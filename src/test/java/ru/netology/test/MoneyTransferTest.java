@@ -16,7 +16,7 @@ public class MoneyTransferTest {
         open("http://localhost:9999/");
     }
 
-    //пополнение первой карты
+    //пополнение первой карты (сумма не больше баланса 2 карты)
     @Test
     void shouldFormSentSuccessfully() {
         var loginPage = new LoginPage();
@@ -43,4 +43,33 @@ public class MoneyTransferTest {
             $("[data-test-id='error-notification']").shouldBe(Condition.visible);
         }
     }
+    //пополнение первой карты (сумма не больше баланса 2 карты)
+
+    @Test
+    void shouldFormSentSuccessfully40000() {
+        var loginPage = new LoginPage();
+        int sumReplenishment = 40000;
+        //переменная для хранения данных для авторизации
+        var authoInfo = DataUser.getAuthorizationInfo();
+        //логинимся
+        var varificationPage = loginPage.validLogin(authoInfo);
+        //вытаскиваем код верификации
+        var verificationCode = DataUser.getVerificationCode();
+        //переходим на страницу дашборд
+        var dashboardPage = varificationPage.validVerify(verificationCode);
+        //вытаскиваем номер карты с которой списываем
+        var card2 = DataUser.getSecondCard().getNumber();
+        //определяем баланс на 2 карте
+        var balance = dashboardPage.getCardBalance(1);
+        //переходим на страницу пополнения 1 карты
+        var cardReplenishmentPage = dashboardPage.amountCards(0);
+        //если баланс больше или равен сумме пополнения
+        if (balance >= sumReplenishment) {
+            cardReplenishmentPage.card1Replenishment(card2, String.valueOf(sumReplenishment));
+        } else {
+            //если сумма перевода больше, чем баланс на карте, выводим сообщение об ошибке
+            $("[data-test-id='error-notification']").shouldBe(Condition.visible);
+        }
+    }
+
 }

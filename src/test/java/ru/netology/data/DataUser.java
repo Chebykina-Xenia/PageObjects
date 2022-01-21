@@ -36,12 +36,12 @@ public class DataUser {
         private String balance;
     }
 
-    public static CardsUser getFirstCard(){
+    public static CardsUser getFirstCard() {
         return new CardsUser("5559 0000 0000 0001", "10 000");
     }
 
     public static CardsUser
-    getSecondCard(){
+    getSecondCard() {
         return new CardsUser("5559 0000 0000 0002", "10 000");
     }
 

@@ -3,7 +3,6 @@ package ru.netology.page;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import lombok.val;
-import ru.netology.data.DataUser;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -11,7 +10,6 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class DashboardPage {
     private SelenideElement heading = $("[data-test-id='dashboard']");
-    private SelenideElement headingAccount = $("[data-test-id='action-transfer']");
 
     private ElementsCollection cards = $$(".list__item");
     //кнопка пополнить (на странице при выборе карт)
@@ -20,7 +18,7 @@ public class DashboardPage {
     private final String balanceStart = ", баланс: ";
     private final String balanceFinish = " р.";
 
-    public DashboardPage(){
+    public DashboardPage() {
         heading.shouldBe(visible);
     }
 
@@ -38,9 +36,9 @@ public class DashboardPage {
     }
 
     //переходим на страницу пополнения (смотрим по индексу 0-первая карта, 2-вторая карта)
-     public CardReplenishmentPage amountCards(int index){
-       topAccount.get(index).click();
-       return new CardReplenishmentPage();
-     }
+    public CardReplenishmentPage amountCards(int index) {
+        topAccount.get(index).click();
+        return new CardReplenishmentPage();
+    }
 
 }

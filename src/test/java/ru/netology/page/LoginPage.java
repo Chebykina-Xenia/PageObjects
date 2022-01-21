@@ -22,7 +22,6 @@ public class LoginPage {
         passwordField.setValue(authoInfo.getPassword());
         //кликаем кнопку продолжить
         loginButton.click();
-
         //возвращаем  VerificationPage, так как полсе нажатия на кнопки продолжить мы попадаем на страницу ввода кода
         return new VerificationPage();
     }

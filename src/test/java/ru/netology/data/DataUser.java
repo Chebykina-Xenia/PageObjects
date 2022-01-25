@@ -33,16 +33,15 @@ public class DataUser {
     //карты пользователя
     public static class CardsUser {
         private String number;
-        private String balance;
     }
 
     public static CardsUser getFirstCard() {
-        return new CardsUser("5559 0000 0000 0001", "10 000");
+        return new CardsUser("5559 0000 0000 0001");
     }
 
     public static CardsUser
     getSecondCard() {
-        return new CardsUser("5559 0000 0000 0002", "10 000");
+        return new CardsUser("5559 0000 0000 0002");
     }
 
 }

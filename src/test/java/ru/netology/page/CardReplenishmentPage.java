@@ -1,5 +1,8 @@
 package ru.netology.page;
 
+import com.codeborne.selenide.Condition;
+
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 //страница пополнения карты
@@ -15,6 +18,4 @@ public class CardReplenishmentPage {
         $("[data-test-id='action-transfer']").click();
         return new DashboardPage();
     }
-
-
 }
